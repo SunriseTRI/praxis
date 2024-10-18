@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Психолог Онлайн</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <!-- Навигационная панель -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">Психолог Онлайн</a>
+            </div>
+            <ul>
+                <li><a href="#about">О психологе</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#appointment">Записаться на приём</a></li>
+                <li><a href="#tests">Пройти тесты</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Главная секция -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Добро пожаловать на сайт психолога!</h1>
+            <p>Вы можете узнать больше обо мне, записаться на консультацию или пройти психологические тесты.</p>
+            <a href="#appointment" class="btn">Записаться на приём</a>
+        </div>
+    </section>
+
+    <!-- О психологе -->
+    <section id="about" class="about">
+        <h2>О психологе</h2>
+        <div class="about-content">
+            <img src="psychologist.jpg" alt="Фото психолога">
+            <p>Я сертифицированный психолог с многолетним опытом работы. Моя цель — помочь вам разобраться в себе и преодолеть жизненные трудности. Здесь вы можете найти информацию о моем опыте, квалификации и методах работы.</p>
+        </div>
+    </section>
+
+    <!-- Услуги -->
+    <section id="services" class="services">
+        <h2>Услуги</h2>
+        <div class="service-cards">
+            <div class="card">
+                <h3>Индивидуальные консультации</h3>
+                <p>Персонализированная помощь для решения ваших личных проблем.</p>
+            </div>
+            <div class="card">
+                <h3>Семейная терапия</h3>
+                <p>Помощь в улучшении отношений и семейных взаимодействий.</p>
+            </div>
+            <div class="card">
+                <h3>Онлайн-консультации</h3>
+                <p>Удобная поддержка через интернет, где бы вы ни находились.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Записаться на приём -->
+    <section id="appointment" class="appointment">
+        <h2>Записаться на приём</h2>
+        <p>Используйте форму ниже для записи на консультацию.</p>
+        <form>
+            <input type="text" placeholder="Ваше имя" required>
+            <input type="email" placeholder="Ваш email" required>
+            <textarea placeholder="Сообщение" required></textarea>
+            <button type="submit">Отправить</button>
+        </form>
+    </section>
+
+    <!-- Пройти тесты -->
+    <section id="tests" class="tests">
+        <h2>Пройти тесты</h2>
+        <p>Пройдите психологические тесты, чтобы лучше понять себя.</p>
+        <a href="#" class="btn">Начать тестирование</a>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2024 Психолог Онлайн. Все права защищены.</p>
+            <ul>
+                <li><a href="#">Политика конфиденциальности</a></li>
+                <li><a href="#">Условия использования</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
