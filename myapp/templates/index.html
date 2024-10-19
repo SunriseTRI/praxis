@@ -2,6 +2,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
+<ul>
+    {% for image in images %}
+        <li>{{ image }}</li>
+    {% endfor %}
+</ul>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,6 +38,9 @@
             <a href="#appointment" class="btn">Записаться на приём</a>
         </div>
     </section>
+
+    <!-- Передаем список изображений в JavaScript через атрибут data -->
+    <div id="images-container" data-images="{{ images|join:',' }}"></div>
 
     <!-- О психологе -->
     <section id="about" class="about">
@@ -90,5 +99,8 @@
             </ul>
         </div>
     </footer>
+
+<script src="{% static 'script.js' %}"></script>
 </body>
+
 </html>
