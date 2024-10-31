@@ -1,6 +1,10 @@
 import os
 from django.conf import settings
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
+from .forms import LoginForm, RegisterForm
+
 
 def index(request):
     # Получаем путь к папке с изображениями
@@ -13,39 +17,37 @@ def index(request):
 
     return render(request, 'index.html', {'images': images})
 
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import Session
-from .forms import UserProfileForm, SessionBookingForm
 
-@login_required
-def user_profile(request):
-    user_sessions = request.user.sessions.all().order_by('-date')[:5]  # Get last 5 sessions
-    return render(request, 'user_profile.html', {'user_sessions': user_sessions})
 
-@login_required
-def edit_profile(request):
+def login_view(request):
     if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=request.user)
+        form = LoginForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('user_profile')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user:
+                login(request, user)
+                return redirect('home')
     else:
-        form = UserProfileForm(instance=request.user)
-    return render(request, 'edit_profile.html', {'form': form})
+        form = LoginForm()
+    return render(request, 'login.html', {'form': form})
+
+def register_view(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')
+    else:
+        form = RegisterForm()
+    return render(request, 'register.html', {'form': form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
 
 @login_required
-def book_session(request):
-    if request.method == 'POST':
-        form = SessionBookingForm(request.POST)
-        if form.is_valid():
-            session = Session(
-                name="New Session",
-                date=form.cleaned_data['session_date'],
-                user=request.user
-            )
-            session.save()
-            return redirect('user_profile')
-    else:
-        form = SessionBookingForm()
-    return render(request, 'book_session.html', {'form': form})
+def profile_view(request):
+    return render(request, 'profile.html')

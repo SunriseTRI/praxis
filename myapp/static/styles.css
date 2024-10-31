@@ -292,3 +292,22 @@ footer ul li a {
     from {opacity: .4}
     to {opacity: 1}
 }
+
+.auth-buttons {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.auth-buttons .btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.auth-buttons .btn:hover {
+    background-color: #0056b3;
+}

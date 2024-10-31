@@ -15,11 +15,6 @@
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-<ul>
-    {% for image in images %}
-    <li><img src="{{ image }}" alt="Image"></li>
-    {% endfor %}
-</ul>
 <!-- Навигационная панель -->
 <header>
     <nav>
@@ -32,6 +27,15 @@
             <li><a href="#appointment">Записаться на приём</a></li>
             <li><a href="#tests">Пройти тесты</a></li>
         </ul>
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <a href="{% url 'profile' %}" class="btn">Профиль</a>
+                <a href="{% url 'logout' %}" class="btn">Выйти</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn">Войти</a>
+                <a href="{% url 'register' %}" class="btn">Регистрация</a>
+            {% endif %}
+        </div>
     </nav>
 </header>
 
