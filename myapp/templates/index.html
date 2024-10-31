@@ -11,94 +11,142 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Психолог Онлайн</title>
+    <title>Praxis-HOME</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <!-- Навигационная панель -->
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="#">Психолог Онлайн</a>
-            </div>
-            <ul>
-                <li><a href="#about">О психологе</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#appointment">Записаться на приём</a></li>
-                <li><a href="#tests">Пройти тесты</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Главная секция -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Добро пожаловать на сайт психолога!</h1>
-            <p>Вы можете узнать больше обо мне, записаться на консультацию или пройти психологические тесты.</p>
-            <a href="#appointment" class="btn">Записаться на приём</a>
+<ul>
+    {% for image in images %}
+    <li><img src="{{ image }}" alt="Image"></li>
+    {% endfor %}
+</ul>
+<!-- Навигационная панель -->
+<header>
+    <nav>
+        <div class="logo">
+            <a href="#">Praxis DBT-Team</a>
         </div>
-    </section>
+        <ul>
+            <li><a href="#about">О психологе</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#appointment">Записаться на приём</a></li>
+            <li><a href="#tests">Пройти тесты</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <!-- Передаем список изображений в JavaScript через атрибут data -->
-    <div id="images-container" data-images="{{ images|join:',' }}"></div>
+<!-- Главная секция -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Добро пожаловать на сайт Praxis DBT-Team!</h1>
+        <p>Вы можете узнать больше о нашей команде, записаться на консультацию или пройти психологические тесты.</p>
+        <a href="#appointment" class="btn">Записаться на приём</a>
+    </div>
+</section>
 
-    <!-- О психологе -->
-    <section id="about" class="about">
-        <h2>О психологе</h2>
-        <div class="about-content">
-            <img src="psychologist.jpg" alt="Фото психолога">
-            <p>Я сертифицированный психолог с многолетним опытом работы. Моя цель — помочь вам разобраться в себе и преодолеть жизненные трудности. Здесь вы можете найти информацию о моем опыте, квалификации и методах работы.</p>
-        </div>
-    </section>
+<!-- Передаем список изображений в JavaScript через атрибут data -->
+<div id="images-container" data-images="{{ images|join:',' }}"></div>
+<!-- О команде -->
+<section id="about" class="about">
+    <h2>О команде</h2>
+    <div class="about-content">
+        <img src="https://gifdb.com/images/high/super-mario-funny-twerk-nhb73o2vrjg809qw.webp" alt="Команда"
+             class="team-photo"/>
 
-    <!-- Услуги -->
-    <section id="services" class="services">
-        <h2>Услуги</h2>
-        <div class="service-cards">
-            <div class="card">
-                <h3>Индивидуальные консультации</h3>
-                <p>Персонализированная помощь для решения ваших личных проблем.</p>
+        <!-- Карусель с командами -->
+        <div class="team-carousel">
+            <div class="team-member">
+                <img src="https://example.com/photo_valya.jpg" alt="Валя" class="team-photo-small"/>
+                <h3>Тим Лид — Валя: Мастер Равновесия</h3>
+                <p>С силой уравновешивания, Валя управляет потоками эмоций, создавая гармонию в сердцах тех, кто в ней
+                    нуждается. Ее мудрость — свет надежды, ведущий к исцелению.</p>
             </div>
-            <div class="card">
-                <h3>Семейная терапия</h3>
-                <p>Помощь в улучшении отношений и семейных взаимодействий.</p>
+            <div class="team-member">
+                <img src="https://example.com/photo_sonya.jpg" alt="Соня" class="team-photo-small"/>
+                <h3>Соня: Хранительница Эмпатии</h3>
+                <p>Соня обладает способностью видеть душу каждого. Она обостряет чувства и наполняет сердца пониманием,
+                    становясь мостом между людьми и миром.</p>
             </div>
-            <div class="card">
-                <h3>Онлайн-консультации</h3>
-                <p>Удобная поддержка через интернет, где бы вы ни находились.</p>
+            <div class="team-member middle-member">
+                <img src="https://example.com/photo_ksyukha.jpg" alt="Ксюха" class="team-photo-small"/>
+                <h3>Ксюха: Воительница Стрессоустойчивости</h3>
+                <p>С несгибаемой волей, Ксюха противостоит бурям внутренней борьбы. Ее сила — бесстрашие перед
+                    трудностями, она помогает команде преодолевать любые преграды.</p>
+            </div>
+            <div class="team-member">
+                <img src="https://example.com/photo_sasha.jpg" alt="Саша" class="team-photo-small"/>
+                <h3>Саша: Ведущая Наставница Навыков</h3>
+                <p>Саша является магистром тренинга. Ее умение обучать и вдохновлять позволяет каждому раскрыть свои
+                    способности и преодолеть преграды на пути к самосовершенствованию.</p>
+            </div>
+            <div class="team-member">
+                <img src="https://example.com/photo_polina.jpg" alt="Полина" class="team-photo-small"/>
+                <h3>Полина: Исцелительница Эмоциональной Регуляции</h3>
+                <p>С силой регуляции, Полина владеет способностью обуздать хаос внутри. Она создает пространство для
+                    восстановления, направляя душу к покою и радости.</p>
+            </div>
+            <div class="team-member">
+                <img src="https://example.com/photo_nastya.jpg" alt="Настя" class="team-photo-small"/>
+                <h3>Настя: Защитница Телефонного Коучинга</h3>
+                <p>Смелая и решительная, Настя всегда на связи, готовая прийти на помощь в любой момент. Она защищает
+                    клиентов от кризисов, обеспечивая поддержку в самые темные часы.</p>
             </div>
         </div>
-    </section>
 
-    <!-- Записаться на приём -->
-    <section id="appointment" class="appointment">
-        <h2>Записаться на приём</h2>
-        <p>Используйте форму ниже для записи на консультацию.</p>
-        <form>
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="email" placeholder="Ваш email" required>
-            <textarea placeholder="Сообщение" required></textarea>
-            <button type="submit">Отправить</button>
-        </form>
-    </section>
+        <p><strong>Вместе они — непобедимая сила, готовая спасти души, восстановить гармонию и даровать надежду всем,
+            кто в этом нуждается!</strong></p>
+    </div>
+</section>
 
-    <!-- Пройти тесты -->
-    <section id="tests" class="tests">
-        <h2>Пройти тесты</h2>
-        <p>Пройдите психологические тесты, чтобы лучше понять себя.</p>
-        <a href="#" class="btn">Начать тестирование</a>
-    </section>
 
-    <!-- Футер -->
-    <footer>
-        <div class="footer-content">
-            <p>© 2024 Психолог Онлайн. Все права защищены.</p>
-            <ul>
-                <li><a href="#">Политика конфиденциальности</a></li>
-                <li><a href="#">Условия использования</a></li>
-            </ul>
+<!-- Услуги -->
+<section id="services" class="services">
+    <h2>Турбо Услуги</h2>
+    <div class="service-cards">
+        <div class="card">
+            <h3>Индивидуальные консультации</h3>
+            <p>Персонализированная артвт для решения ваших личных проблем.</p>
         </div>
-    </footer>
+        <div class="card">
+            <h3>Семейная терапия</h3>
+            <p>Помощь в улучшении отношений и семейных взаимодействий.</p>
+        </div>
+        <div class="card">
+            <h3>Онлайн-консультации</h3>
+            <p>Удобная поддержка через интернет, где бы вы ни находились.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Записаться на приём -->
+<section id="appointment" class="appointment">
+    <h2>Записаться на приём</h2>
+    <p>Используйте форму ниже для записи на консультацию.</p>
+    <form>
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="email" placeholder="Ваш email" required>
+        <textarea placeholder="Сообщение" required></textarea>
+        <button type="submit">Отправить</button>
+    </form>
+</section>
+
+<!-- Пройти тесты -->
+<section id="tests" class="tests">
+    <h2>Пройти тесты</h2>
+    <p>Пройдите психологические тесты, чтобы лучше понять себя.</p>
+    <a href="#" class="btn">Начать тестирование</a>
+</section>
+
+<!-- Футер -->
+<footer>
+    <div class="footer-content">
+        <p>© 2024 Психолог Онлайн. Все права защищены.</p>
+        <ul>
+            <li><a href="#">Политика конфиденциальности</a></li>
+            <li><a href="#">Условия использования</a></li>
+        </ul>
+    </div>
+</footer>
 
 <script src="{% static 'script.js' %}"></script>
 </body>
