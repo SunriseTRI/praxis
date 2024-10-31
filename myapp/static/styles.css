@@ -49,7 +49,7 @@ nav ul li a:hover {
 
 /* Главная секция */
 .hero {
-    background-image: url('hero-image.jpg');
+    background-image: url('https://media.istockphoto.com/id/1438225155/ru/%D1%84%D0%BE%D1%82%D0%BE/%D0%BA%D1%80%D1%83%D0%BF%D0%BD%D1%8B%D0%B9-%D0%BF%D0%BB%D0%B0%D0%BD-%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B-%D0%B4%D0%B5%D0%BB%D0%B0%D1%8E%D1%89%D0%B5%D0%B9-%D1%83%D0%B4%D0%B0%D1%80-%D0%BA%D1%83%D0%BB%D0%B0%D0%BA%D0%BE%D0%BC.jpg?s=2048x2048&w=is&k=20&c=tUAu7-ikIV6UW5B4TJ5Sx-76xo9G9PcV-pSL8AISWqo=');
     background-size: cover;
     background-position: center;
     height: 400px;
@@ -94,6 +94,42 @@ nav ul li a:hover {
     margin: 0 auto;
     font-size: 1.2rem;
     color: #333;
+}
+
+/* Стиль карточек участников */
+
+.team-carousel {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+    justify-items: center;
+}
+
+.team-member {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.team-photo-small {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.team-member h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+}
+
+.team-member p {
+    margin-top: 10px;
+    font-size: 1rem;
 }
 
 /* Услуги */
@@ -188,6 +224,7 @@ footer ul li a {
     color: white;
     text-decoration: none;
 }
+
 /* Стили для слайдов */
 #slideshow {
     position: relative;
@@ -231,9 +268,9 @@ footer ul li a {
 }
 .hero {
     position: relative;
-    height: 600px; /* Высота секции, настройте по вашему усмотрению */
+    height: 400px; /* Высота секции, настройте по вашему усмотрению */
     overflow: hidden;
-    color: #fff; /* Цвет текста */
+    color: #fd6501; /* Цвет текста */
 }
 
 .hero-content {
@@ -293,21 +330,35 @@ footer ul li a {
     to {opacity: 1}
 }
 
-.auth-buttons {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+
+    nav ul {
+        margin-top: 10px;
+    }
+
+    .service-cards {
+        flex-direction: column;
+    }
+
+    .card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
 }
 
-.auth-buttons .btn {
-    margin-left: 10px;
-    padding: 5px 10px;
-    background-color: #007bff;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
 
-.auth-buttons .btn:hover {
-    background-color: #0056b3;
+
+a:focus, button:focus, input:focus, textarea:focus {
+    outline: 2px solid #007bff;
 }

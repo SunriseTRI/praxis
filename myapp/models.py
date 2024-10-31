@@ -4,6 +4,8 @@ from django.db import models
 from django.db import models
 from django.contrib.auth.models import User
 
+
+#! useers
 class Session(models.Model):
     name = models.CharField(max_length=200)
     date = models.DateTimeField()
@@ -11,3 +13,13 @@ class Session(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.date}"
+
+#! мамберсы
+class TeamMember(models.Model):
+    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    photo = models.ImageField(upload_to='p-photo/')
+
+    def __str__(self):
+        return self.name

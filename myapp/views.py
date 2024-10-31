@@ -4,18 +4,23 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, RegisterForm
-
+from .models import TeamMember
 
 def index(request):
-    # Получаем путь к папке с изображениями
-    pictures_dir = os.path.join(settings.MEDIA_ROOT, 'pictures')
+    team_members = TeamMember.objects.all()
+    return render(request, 'index.html', {'team_members': team_members})
 
-    # Получаем список всех файлов в папке pictures
-    images = []
-    if os.path.exists(pictures_dir):
-        images = [f'pictures/{img}' for img in os.listdir(pictures_dir) if img.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
 
-    return render(request, 'index.html', {'images': images})
+# def index(request):
+#     # Получаем путь к папке с изображениями
+#     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'pictures')
+#
+#     # Получаем список всех файлов в папке pictures
+#     images = []
+#     if os.path.exists(pictures_dir):
+#         images = [f'pictures/{img}' for img in os.listdir(pictures_dir) if img.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
+#
+#     return render(request, 'index.html', {'images': images})
 
 
 
