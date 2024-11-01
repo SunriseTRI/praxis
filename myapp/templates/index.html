@@ -56,18 +56,20 @@
 <div id="images-container" data-images="{{ images|join:',' }}"></div>
 <!-- О команде -->
 <section id="about" class="about">
-    <div id="images-container" data-images="{% for info in team_info %}{{ info.photo.url }}{% if not forloop.last %},{% endif %}{% endfor %}" style="display: none;"></div>
     {% if team_info %}
-        {% for info in team_info %}
-            <div class="about-content">
-                <h2>{{ info.title }}</h2>
-                <p>{{ info.description }}</p>
-            </div>
-        {% endfor %}
+        <div class="about-content">
+            {% for info in team_info %}
+                <div class="team-photo-container" data-photo-url="{{ info.photo.url }}">
+                    <h2 class="title">{{ info.title }}</h2>
+                    <p class="description">{{ info.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
     {% else %}
         <p>No description found.</p>
     {% endif %}
 </section>
+
     {#<section id="about" class="about">#}
     {#    <h2>О команде</h2>#}
     {#    <div class="about-content">#}
