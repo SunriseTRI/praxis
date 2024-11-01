@@ -8,9 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
             if (index === currentIndex) {
                 const photoUrl = container.getAttribute('data-photo-url');
                 container.style.backgroundImage = `url(${photoUrl})`;
+                console.log(`Current photo URL: ${photoUrl}`);
             }
         });
         currentIndex = (currentIndex + 1) % teamContainers.length;
+        console.log(`Current index: ${currentIndex}`);
     }
 
     changeBackground(); // Начальный вызов

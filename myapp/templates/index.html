@@ -1,46 +1,8 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<ul>
-    {% for image in images %}
-        <li>{{ image }}</li>
-    {% endfor %}
-</ul>
+{% block title %}Главная страница{% endblock %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Praxis-HOME</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <script src="{% static 'script.js' %}"></script>
-</head>
-<body>
-<!-- Навигационная панель -->
-<header>
-    <nav>
-        <div class="logo">
-            <a href="#">Praxis DBT-Team</a>
-        </div>
-        <ul>
-            <li><a href="#about">О психологе</a></li>
-            <li><a href="#services">Услуги</a></li>
-            <li><a href="#appointment">Записаться на приём</a></li>
-            <li><a href="#tests">Пройти тесты</a></li>
-        </ul>
-        <div class="auth-buttons">
-            {% if user.is_authenticated %}
-                <a href="{% url 'profile' %}" class="btn">Профиль</a>
-                <a href="{% url 'logout' %}" class="btn">Выйти</a>
-            {% else %}
-                <a href="{% url 'login' %}" class="btn">Войти</a>
-                <a href="{% url 'register' %}" class="btn">Регистрация</a>
-            {% endif %}
-        </div>
-    </nav>
-</header>
-
-<!-- Главная секция -->
+{% block content %}
 <section class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -52,9 +14,8 @@
     </div>
 </section>
 
-<!-- Передаем список изображений в JavaScript через атрибут data -->
 <div id="images-container" data-images="{{ images|join:',' }}"></div>
-<!-- О команде -->
+
 <section id="about" class="about">
     {% if team_info %}
         <div class="about-content">
@@ -70,136 +31,19 @@
     {% endif %}
 </section>
 
-    {#<section id="about" class="about">#}
-    {#    <h2>О команде</h2>#}
-    {#    <div class="about-content">#}
-    {#        <img src="https://gifdb.com/images/high/super-mario-funny-twerk-nhb73o2vrjg809qw.webp" alt="Команда"#}
-    {#             class="team-photo"/>#}
-    {#        <p> Информация о команде находится строго в засекреченых архивах. </p>#}
-    {#    <br/>#}
-    {#    </div>#}
+<div class="team-carousel">
+    {% if team_members %}
+        {% for member in team_members %}
+            <div class="team-member">
+                <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="team-photo-small"/>
+                <h3>{{ member.title }}</h3>
+                <p>{{ member.description }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No team members found.</p>
+    {% endif %}
+</div>
 
-
-    <div class="team-carousel">
-        {% if team_members %}
-            {% for member in team_members %}
-                <div class="team-member">
-                    <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="team-photo-small"/>
-                    <h3>{{ member.title }}</h3>
-                    <p>{{ member.description }}</p>
-                </div>
-            {% endfor %}
-        {% else %}
-            <p>No team members found.</p>
-        {% endif %}
-    </div>
-
-    <p><strong>Вместе они — непобедимая сила, готовая спасти души, восстановить гармонию и даровать надежду всем,
-        кто в этом нуждается!</strong></p>
-    </div>
-</section>
-{#<section id="about" class="about">#}
-{#    <h2>О команде</h2>#}
-{#    <div class="about-content">#}
-{#        <img src="https://gifdb.com/images/high/super-mario-funny-twerk-nhb73o2vrjg809qw.webp" alt="Команда"#}
-{#             class="team-photo"/>#}
-{##}
-{#        <!-- Карусель с командами -->#}
-{#        <div class="team-carousel">#}
-{#            <div class="team-member">#}
-{#                <img src="https://avatars.mds.yandex.net/i?id=16f675d2ab377eedf1f684bdd7f201b45210c552-3071255-images-thumbs&n=13" alt="Валя" class="team-photo-small"/>#}
-{#                <h3>Тим Лид — Валя: Мастер Равновесия</h3>#}
-{#                <p>С силой уравновешивания, Валя управляет потоками эмоций, создавая гармонию в сердцах тех, кто в ней#}
-{#                    нуждается. Ее мудрость — свет надежды, ведущий к исцелению.</p>#}
-{#            </div>#}
-{#            <div class="team-member">#}
-{#                <img src="https://example.com/photo_sonya.jpg" alt="Соня" class="team-photo-small"/>#}
-{#                <h3>Соня: Хранительница Эмпатии</h3>#}
-{#                <p>Соня обладает способностью видеть душу каждого. Она обостряет чувства и наполняет сердца пониманием,#}
-{#                    становясь мостом между людьми и миром.</p>#}
-{#            </div>#}
-{#            <div class="team-member middle-member">#}
-{#                <img src="https://example.com/photo_ksyukha.jpg" alt="Ксюха" class="team-photo-small"/>#}
-{#                <h3>Ксюха: Воительница Стрессоустойчивости</h3>#}
-{#                <p>С несгибаемой волей, Ксюха противостоит бурям внутренней борьбы. Ее сила — бесстрашие перед#}
-{#                    трудностями, она помогает команде преодолевать любые преграды.</p>#}
-{#            </div>#}
-{#            <div class="team-member">#}
-{#                <img src="https://example.com/photo_sasha.jpg" alt="Саша" class="team-photo-small"/>#}
-{#                <h3>Саша: Ведущая Наставница Навыков</h3>#}
-{#                <p>Саша является магистром тренинга. Ее умение обучать и вдохновлять позволяет каждому раскрыть свои#}
-{#                    способности и преодолеть преграды на пути к самосовершенствованию.</p>#}
-{#            </div>#}
-{#            <div class="team-member">#}
-{#                <img src="https://prodoctorov.ru/media/photo/moskva/doctorimage/745485/1102881-745485-yaltonskaya_square.jpg" alt="Полина" class="team-photo-small"/>#}
-{#                <h3>Полина: Исцелительница Эмоциональной Регуляции</h3>#}
-{#                <p>С силой регуляции, Полина владеет способностью обуздать хаос внутри. Она создает пространство для#}
-{#                    восстановления, направляя душу к покою и радости.</p>#}
-{#            </div>#}
-{#            <div class="team-member">#}
-{#                <img src="https://example.com/photo_nastya.jpg" alt="Настя" class="team-photo-small"/>#}
-{#                <h3>Настя: Защитница Телефонного Коучинга</h3>#}
-{#                <p>Смелая и решительная, Настя всегда на связи, готовая прийти на помощь в любой момент. Она защищает#}
-{#                    клиентов от кризисов, обеспечивая поддержку в самые темные часы.</p>#}
-{#            </div>#}
-{#        </div>#}
-{##}
-{#        <p><strong>Вместе они — непобедимая сила, готовая спасти души, восстановить гармонию и даровать надежду всем,#}
-{#            кто в этом нуждается!</strong></p>#}
-{#    </div>#}
-{#</section>#}
-
-
-<!-- Услуги -->
-<section id="services" class="services">
-    <h2>Турбо Услуги</h2>
-    <div class="service-cards">
-        <div class="card">
-            <h3>Индивидуальные консультации</h3>
-            <p>Персонализированная артвт для решения ваших личных проблем.</p>
-        </div>
-        <div class="card">
-            <h3>Семейная терапия</h3>
-            <p>Помощь в улучшении отношений и семейных взаимодействий.</p>
-        </div>
-        <div class="card">
-            <h3>Онлайн-консультации</h3>
-            <p>Удобная поддержка через интернет, где бы вы ни находились.</p>
-        </div>
-    </div>
-</section>
-
-<!-- Записаться на приём -->
-<section id="appointment" class="appointment">
-    <h2>Записаться на приём</h2>
-    <p>Используйте форму ниже для записи на консультацию.</p>
-    <form>
-        <input type="text" placeholder="Ваше имя" required>
-        <input type="email" placeholder="Ваш email" required>
-        <textarea placeholder="Сообщение" required></textarea>
-        <button type="submit">Отправить</button>
-    </form>
-</section>
-
-<!-- Пройти тесты -->
-<section id="tests" class="tests">
-    <h2>Пройти тесты</h2>
-    <p>Пройдите психологические тесты, чтобы лучше понять себя.</p>
-    <a href="#" class="btn">Начать тестирование</a>
-</section>
-
-<!-- Футер -->
-<footer>
-    <div class="footer-content">
-        <p>© 2024 Психолог Онлайн. Все права защищены.</p>
-        <ul>
-            <li><a href="#">Политика конфиденциальности</a></li>
-            <li><a href="#">Условия использования</a></li>
-        </ul>
-    </div>
-</footer>
-
-<script src="{% static 'script.js' %}"></script>
-</body>
-
-</html>
+<p><strong>Вместе они — непобедимая сила, готовая спасти души, восстановить гармонию и даровать надежду всем, кто в этом нуждается!</strong></p>
+{% endblock %}
