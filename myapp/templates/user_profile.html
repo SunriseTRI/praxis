@@ -9,10 +9,7 @@
 
     <div class="row">
         <div id="content" class="col-sm-9 single-blog">
-            <ul class="breadcrumb">
-                <li><a href="/"><i class="fa fa-home"></i></a></li>
-                <li>Профиль пользователя</li>
-            </ul>
+
             <h1>Привет, {{ user.username }}!</h1>
             <div class="well">
                 <div class="">
@@ -25,7 +22,7 @@
                             <p><strong>Фамилия:</strong> {{ user.last_name }}</p>
                             <p><strong>Email:</strong> {{ user.email }}</p>
                             <p><strong>Дата регистрации:</strong> {{ user.date_joined|date:"d.m.Y" }}</p>
-                            <a href="{% url 'edit_profile' %}" class="btn btn-primary">Редактировать профиль</a>
+                            <a href="#потомвсёбудет" class="btn btn-primary">Редактировать профиль</a>
                         </div>
                     </div>
 
@@ -42,7 +39,7 @@
                                     <li>У вас пока нет пройденных сессий.</li>
                                 {% endfor %}
                             </ul>
-                            <a href="{% url 'book_session' %}" class="btn btn-success">Записаться на новую сессию</a>
+                            <a href="#потомвсёбудет" class="btn btn-success">Записаться на новую сессию</a>
                         </div>
                     </div>
                 </div>

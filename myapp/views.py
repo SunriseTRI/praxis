@@ -1,43 +1,35 @@
 import os
 from django.conf import settings
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, RegisterForm
 from .models import *
+
 
 def index(request):
     team_members = TeamMember.objects.all()
     team_info = TeamInfo.objects.all()
     return render(request, 'index.html', {'team_members': team_members, 'team_info': team_info})
 
-
-# def index(request):
-#     # Получаем путь к папке с изображениями
-#     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'pictures')
-#
-#     # Получаем список всех файлов в папке pictures
-#     images = []
-#     if os.path.exists(pictures_dir):
-#         images = [f'pictures/{img}' for img in os.listdir(pictures_dir) if img.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
-#
-#     return render(request, 'index.html', {'images': images})
-
+def user_profile_view(request):
+    return render(request, 'user_profile.html')
 
 
 def login_view(request):
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user:
-                login(request, user)
-                return redirect('home')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('user_profile')  # Замените на имя вашего URL
     else:
-        form = LoginForm()
+        form = LoginForm()  # Убедитесь, что вы используете вашу форму
     return render(request, 'login.html', {'form': form})
+
 
 def register_view(request):
     if request.method == 'POST':
