@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Praxis-HOME</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <script src="{% static 'script.js' %}"></script>
 </head>
 <body>
 <!-- Навигационная панель -->
@@ -55,27 +56,44 @@
 <div id="images-container" data-images="{{ images|join:',' }}"></div>
 <!-- О команде -->
 <section id="about" class="about">
-    <h2>О команде</h2>
-    <div class="about-content">
-        <img src="https://gifdb.com/images/high/super-mario-funny-twerk-nhb73o2vrjg809qw.webp" alt="Команда"
-             class="team-photo"/>
-
-<div class="team-carousel">
-    {% if team_members %}
-        {% for member in team_members %}
-        <div class="team-member">
-            <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="team-photo-small"/>
-            <h3>{{ member.title }}</h3>
-            <p>{{ member.description }}</p>
-        </div>
+    <div id="images-container" data-images="{% for info in team_info %}{{ info.photo.url }}{% if not forloop.last %},{% endif %}{% endfor %}" style="display: none;"></div>
+    {% if team_info %}
+        {% for info in team_info %}
+            <div class="about-content">
+                <h2>{{ info.title }}</h2>
+                <p>{{ info.description }}</p>
+            </div>
         {% endfor %}
     {% else %}
-        <p>No team members found.</p>
+        <p>No description found.</p>
     {% endif %}
-</div>
+</section>
+    {#<section id="about" class="about">#}
+    {#    <h2>О команде</h2>#}
+    {#    <div class="about-content">#}
+    {#        <img src="https://gifdb.com/images/high/super-mario-funny-twerk-nhb73o2vrjg809qw.webp" alt="Команда"#}
+    {#             class="team-photo"/>#}
+    {#        <p> Информация о команде находится строго в засекреченых архивах. </p>#}
+    {#    <br/>#}
+    {#    </div>#}
 
-        <p><strong>Вместе они — непобедимая сила, готовая спасти души, восстановить гармонию и даровать надежду всем,
-            кто в этом нуждается!</strong></p>
+
+    <div class="team-carousel">
+        {% if team_members %}
+            {% for member in team_members %}
+                <div class="team-member">
+                    <img src="{{ member.photo.url }}" alt="{{ member.name }}" class="team-photo-small"/>
+                    <h3>{{ member.title }}</h3>
+                    <p>{{ member.description }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No team members found.</p>
+        {% endif %}
+    </div>
+
+    <p><strong>Вместе они — непобедимая сила, готовая спасти души, восстановить гармонию и даровать надежду всем,
+        кто в этом нуждается!</strong></p>
     </div>
 </section>
 {#<section id="about" class="about">#}

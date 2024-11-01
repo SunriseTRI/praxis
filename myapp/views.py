@@ -4,11 +4,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import LoginForm, RegisterForm
-from .models import TeamMember
+from .models import *
 
 def index(request):
     team_members = TeamMember.objects.all()
-    return render(request, 'index.html', {'team_members': team_members})
+    team_info = TeamInfo.objects.all()
+    return render(request, 'index.html', {'team_members': team_members, 'team_info': team_info})
 
 
 # def index(request):

@@ -23,3 +23,13 @@ class TeamMember(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class TeamInfo(models.Model):
+    title = models.CharField(max_length=100)
+    name = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to='t-photo/')
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name
